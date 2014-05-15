@@ -31,9 +31,9 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
-import com.tarks.favorite.example.R;
 import com.tarks.favorite.example.CropManager;
 import com.tarks.favorite.example.GalleryView;
+import com.tarks.favorite.example.R;
 import com.tarks.favorite.example.connect.AsyncHttpTask;
 import com.tarks.favorite.example.connect.ImageDownloader;
 import com.tarks.favorite.example.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
@@ -111,11 +111,13 @@ public class ProfileInfo extends SherlockActivity {
 			@Override
 			public void onClick(View v) {
 				//Log.i("Clicked", "Profile");
+				if(profile_pic.matches("Y")){
 				Intent intent = new Intent(ProfileInfo.this,
 						GalleryView.class);
 				intent.putExtra("path",local_path
 						+ member_srl + ".jpg");
 				startActivity(intent);
+				}
 			}
 		});
        profile_edit.setOnClickListener(new OnClickListener() {

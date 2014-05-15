@@ -35,8 +35,8 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 import com.actionbarsherlock.view.Window;
-import com.tarks.favorite.example.R;
 import com.tarks.favorite.example.CropManager;
+import com.tarks.favorite.example.R;
 import com.tarks.favorite.example.connect.AsyncHttpTask;
 import com.tarks.favorite.example.connect.ImageDownloader;
 import com.tarks.favorite.example.global.Global;
@@ -690,6 +690,7 @@ public class ProfileEdit extends SherlockActivity {
 					privacy_category.class);
 			intent2.putExtra("status", write_status);
 			intent2.putExtra("title", getString(R.string.write_permission));
+			intent2.putExtra("kind", "write_permission");
 
 			startActivityForResult(intent2, 10005);
 			return true;

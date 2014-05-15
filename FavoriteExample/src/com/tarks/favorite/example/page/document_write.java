@@ -2,9 +2,10 @@
 package com.tarks.favorite.example.page;
 
 import java.io.File;
-
 import java.util.ArrayList;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.net.Uri;
@@ -20,8 +21,8 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 import com.actionbarsherlock.view.Window;
-import com.tarks.favorite.example.R;
 import com.tarks.favorite.example.GalleryView;
+import com.tarks.favorite.example.R;
 import com.tarks.favorite.example.connect.AsyncHttpTask;
 import com.tarks.favorite.example.global.Global;
 import com.tarks.favorite.example.global.Globalvariable;
@@ -68,9 +69,11 @@ public class document_write extends SherlockActivity {
 		page_name = intent.getStringExtra("page_name");
 		doc_contents = intent.getStringExtra("doc_contents");
 		content_edittext = (EditText) findViewById(R.id.editText1);
+		mImageUri = intent.getParcelableExtra("image_uri");
 		externel_path= getExternalCacheDir().getAbsolutePath() + "/";
 		if(page_name != null) getSupportActionBar().setSubtitle(page_name);
 		if(doc_contents != null) content_edittext.setText(doc_contents);
+		if(mImageUri != null) confirmImage();
 	}
 
 	public void PostAct() {
@@ -128,6 +131,23 @@ public class document_write extends SherlockActivity {
 		this.setResult(RESULT_OK, intent);
 		finish();
 	}
+	
+	public void CancelWritingAlert(){
+		// Alert
+		AlertDialog.Builder builder = new AlertDialog.Builder(document_write.this);
+		builder.setMessage(getString(R.string.cancel_writing_des)).setTitle(
+				getString(R.string.warning));
+		builder.setPositiveButton(getString(R.string.yes),
+				new DialogInterface.OnClickListener() {
+
+					public void onClick(DialogInterface dialog, int which) {
+						finish();
+						
+					}
+				});
+		builder.setNegativeButton(getString(R.string.no),null);
+		builder.show();
+	}
 
 	protected Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -152,6 +172,14 @@ public class document_write extends SherlockActivity {
 
 		}
 	};
+	
+	public void confirmImage(){
+		Intent intent = new Intent(document_write.this, GalleryView.class);
+		intent.putExtra("uri", mImageUri);
+		intent.putExtra("edit", true);
+		startActivityForResult(intent, IMAGE_EDIT);
+
+	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -194,11 +222,7 @@ file_kind = 1;
 			// ... some code to inflate/create/find appropriate ImageView to
 			// place grabbed image
 			// profile_bitmap = Global.grabImage(mImageUri);
-			Intent intent = new Intent(document_write.this, GalleryView.class);
-			intent.putExtra("uri", mImageUri);
-			intent.putExtra("edit", true);
-			startActivityForResult(intent, IMAGE_EDIT);
-
+			confirmImage();
 		}
 		
 		if (requestCode == FILE_CODE && resultCode == RESULT_OK) {
@@ -209,7 +233,7 @@ file_kind = 1;
 file_kind = 2;
 			file_path = data.getData();
 			 
-			Log.i("test", data.getDataString());
+		//	Log.i("test", data.getDataString());
 		//	Log.i("file", file_path);
 			attach_exist = true;
 			invalidateOptionsMenu();
@@ -335,6 +359,17 @@ file_kind = 2;
 			return super.onOptionsItemSelected(item);
 		}
 
+	}
+	
+	@Override
+	public void onBackPressed() {
+		
+		if(content_edittext.getText().toString().matches("")){
+			finish();
+		}else{
+			CancelWritingAlert();
+		}
+		
 	}
 
 }

@@ -808,6 +808,7 @@ public final class Global {
 		  InputStream in = cr.openInputStream(image_uri);
 			BitmapFactory.Options option = new BitmapFactory.Options();
 			option.inPurgeable = true;
+			option.inDither = true;
 			
 			if (imagesize[1]> 1024)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*1;
 			if (imagesize[1]> 2048)	option.inSampleSize = Integer.parseInt(mod.getString(R.string.pic_size_devide))*2;

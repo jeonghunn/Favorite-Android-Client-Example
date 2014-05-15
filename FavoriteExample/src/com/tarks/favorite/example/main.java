@@ -3,7 +3,10 @@ package com.tarks.favorite.example;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,10 +21,13 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.tarks.favorite.example.R;
 import com.tarks.favorite.example.global.Global;
 import com.tarks.favorite.example.page.ProfileActivity;
+import com.tarks.favorite.example.page.ProfileInfo;
+import com.tarks.favorite.example.page.document_write;
 import com.tarks.favorite.example.page.privacy_category;
 
 public class main extends SherlockActivity {
@@ -166,6 +172,44 @@ public class main extends SherlockActivity {
 
 	}
 
+	/**
+	 * 임의의 방법으로 더미 아이템을 추가합니다.
+	 * 
+	 * @param size
+	 */
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+	//	this.optionsMenu = menu;
+		MenuItem item;
+
+		menu.add(0, 0, 0, getString(R.string.app_info))
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+	
+
+	
+
+		return true;
+	}
+
+
+
+	// 빽백키 상단액션바
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case 0:
+			// Alert
+			Intent intent1 = new Intent(main.this, info.class);
+			startActivity(intent1);
+
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
  	    
  	   }
     
