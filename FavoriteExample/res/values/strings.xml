@@ -2,8 +2,8 @@
 <resources>
 
     <string name="app_name">Favorite Example</string>
-    <string name="ver">1.2.0.3886</string>
-    <string name="build">3886</string>
+    <string name="ver">1.3.0.3916</string>
+    <string name="build">3916</string>
     <string name="pic_size_devide">1</string>
     <string name="verkind">Beta</string>
     <string name="copyright">Copyrightⓒ 2014 Tarks.</string>
