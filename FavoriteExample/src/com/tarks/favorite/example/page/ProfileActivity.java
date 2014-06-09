@@ -703,7 +703,8 @@ public class ProfileActivity extends SherlockActivity {
 		case 2:
 			Intent intent2 = new Intent(ProfileActivity.this, ProfileInfo.class);
 			intent2.putExtra("member_srl", member_srl);
-			startActivity(intent2);
+			startActivityForResult(intent2, 1);
+
 			return true;
 		case android.R.id.home:
 			onBackPressed();

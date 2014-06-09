@@ -27,7 +27,7 @@ public class AsyncHttpTask extends AsyncTask<String, Void, String> {
 	String fileName;
 	String url, myResult;
 	Context context;
-	ArrayList paramNames, paramValues, files;
+	ArrayList<String> paramNames, paramValues, files;
 	int handlernum = 1;
 	// String[] files;
 

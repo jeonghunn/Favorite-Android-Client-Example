@@ -41,21 +41,15 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.Window;
 import com.tarks.favorite.example.GalleryView;
-import com.tarks.favorite.example.MainActivity;
 import com.tarks.favorite.example.connect.AsyncHttpTask;
 import com.tarks.favorite.example.connect.ImageDownloader;
-import com.tarks.favorite.example.fadingactionbar.extras.actionbarsherlock.FadingActionBarHelper;
 import com.tarks.favorite.example.global.Filedw;
 import com.tarks.favorite.example.global.Global;
 import com.tarks.favorite.example.global.Globalvariable;
-import com.tarks.favorite.example.page.ProfileActivity.List;
-import com.tarks.favorite.example.start.join;
 
 public class document_read extends SherlockActivity {
 
@@ -284,7 +278,7 @@ try{
 								- (previous_count - 1) * 10 : 10);
 				if (getStartComment(comments_count) == 0)
 					previous_comments.setVisibility(View.GONE);
-				listView.smoothScrollToPosition(0);
+			//	listView.smoothScrollToPosition(0);
 			//	Log.i("Count", getStartComment(comments_count) + "");
 			}
 
